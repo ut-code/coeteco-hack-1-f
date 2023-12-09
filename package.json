@@ -1,5 +1,15 @@
 {
   "devDependencies": {
     "netlify-cli": "^17.10.1"
-  }
+  },
+  "type": "module",
+  "name": "coeteco-hack-1-f",
+  "description": "教科書から問題を作る！",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ntl dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
