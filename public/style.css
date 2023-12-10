@@ -1,4 +1,4 @@
-#question {
+.question {
   font-size: 40px; /* 適当なフォントサイズを指定 */
   border: 2px solid #ccc; /* 枠線のスタイルと色 */
   border-radius: 15px; /* 角の丸みを設定 */
