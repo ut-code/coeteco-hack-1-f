@@ -1,3 +1,4 @@
+// result.js
 const questionJson = JSON.parse(localStorage.getItem("question"));
 const numberOfQuestions = questionJson.length;
 
@@ -8,7 +9,7 @@ function setupQuestions() {
     for (let i = 0; i < numberOfQuestions; i++) {
         const storedValue = localStorage.getItem('storedValue-' + (i + 1));
         const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
+        questionDiv.classList.add('box', 'mb-5');
 
         const option1 = questionJson[i].a;
         const option2 = questionJson[i].s1;
@@ -16,20 +17,21 @@ function setupQuestions() {
         const option4 = questionJson[i].s3;
         const answer = option1;
 
-        const questionText = document.createElement('div');
-        questionText.id = 'question-' + (i + 1);
+        const questionText = document.createElement('p');
+        questionText.classList.add('title', 'is-4');
         questionText.textContent = questionJson[i].q;
 
         const answersContainer = document.createElement('div');
-        answersContainer.id = 'answers-' + (i + 1);
+        answersContainer.classList.add('buttons', 'are-medium');
 
         // ここでdescriptionElementを作成
         const descriptionElement = document.createElement('div');
+        descriptionElement.classList.add('mt-3', 'has-text-centered');
         descriptionElement.id = 'description-' + (i + 1);
 
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
-            label.classList.add('radio');
+            label.classList.add('button', 'is-light');
 
             const input = document.createElement('input');
             input.type = 'radio';
