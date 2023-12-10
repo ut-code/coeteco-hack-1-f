@@ -1,3 +1,11 @@
+const questionJson = JSON.parse(localStorage.getItem("question"));
+console.log(questionJson)
+document.getElementById("question").textContent = questionJson.q;
+document.getElementById("option1").textContent = questionJson.a;
+document.getElementById("option2").textContent = questionJson.s1;
+document.getElementById("option3").textContent = questionJson.s2;
+document.getElementById("option4").textContent = questionJson.s3;
+
 const submitButton = document.getElementById('submit');
 submitButton.addEventListener('click', checkAndStoreRadioButton);
 
