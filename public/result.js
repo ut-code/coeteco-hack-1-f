@@ -1,22 +1,34 @@
 const questionJson = JSON.parse(localStorage.getItem("question"));
+
 const numberOfQuestions = questionJson.length;
-const answer = "option1";
-const description = "解説";
+
 const questionsContainer = document.getElementById('questions-container');
 questionsContainer.innerHTML = '';
 
 function setupQuestions() {
-    for (let i = 1; i <= numberOfQuestions; i++) {
-        const storedValue = localStorage.getItem('storedValue-' + i);
+    for (let i = 0; i < numberOfQuestions; i++) {  // インデックスは 0 から始まります
+        let answer = questionJson[i].a;
+        let question = questionJson[i].q;
+        let option1 = questionJson[i].s1;
+        let option2 = questionJson[i].s2;
+        let option3 = questionJson[i].s3;
+        let option4 = questionJson[i].s4;
+        let description = "解説";
+
+        const storedValue = localStorage.getItem('storedValue-' + (i + 1));  // インデックスは 1 から始まります
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('question');
 
         const questionText = document.createElement('div');
-        questionText.id = 'question-' + i;
-        questionText.textContent = 'Question ' + i;
+        questionText.id = 'question-' + (i + 1);
+        questionText.textContent = question;
 
         const answersContainer = document.createElement('div');
-        answersContainer.id = 'answers-' + i;
+        answersContainer.id = 'answers-' + (i + 1);
+
+        // ここでdescriptionElementを作成
+        const descriptionElement = document.createElement('div');
+        descriptionElement.id = 'description-' + (i + 1);
 
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
@@ -24,7 +36,7 @@ function setupQuestions() {
 
             const input = document.createElement('input');
             input.type = 'radio';
-            input.name = 'answer-' + i;
+            input.name = 'answer-' + (i + 1);
             input.value = 'option' + j;
 
             const text = document.createTextNode('option ' + j);
@@ -32,9 +44,6 @@ function setupQuestions() {
             label.appendChild(input);
             label.appendChild(text);
             answersContainer.appendChild(label);
-
-            const descriptionElement = document.createElement('div');
-            descriptionElement.id = 'description-' + i;
 
             // ラジオボタンの選択状態を設定
             if (input.value === storedValue) {
@@ -48,19 +57,22 @@ function setupQuestions() {
                 label.style.borderRadius = '10px';
 
                 // id="description"のtextContentを設定
-
-               descriptionElement.style.fontSize = '30px';
-               descriptionElement.innerHTML = (storedValue === answer.toString())
-               ? "正解！<br>" + description
-               : "正解は " + answer + "<br>" + description;
-
-              }
+                descriptionElement.style.fontSize = '20px';
+                descriptionElement.innerHTML = (storedValue === answer.toString())
+                    ? "正解！<br>" + description
+                    : "正解は " + answer + "<br>" + description;
+            }
+        }
 
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
+
+        // descriptionElementを追加
+        questionDiv.appendChild(descriptionElement);
+
         questionsContainer.appendChild(questionDiv);
     }
-}}
+}
 
 const redirectToHomeButton = document.getElementById('redirectToHome');
 redirectToHomeButton.addEventListener('click', redirectToHome);
@@ -70,11 +82,10 @@ regenerateQuestionButton.addEventListener('click', regenerateQuestion);
 
 function redirectToHome() {
     window.location.href = 'index.html';
-  window.location.href = 'index.html';
 }
 
 function regenerateQuestion() {
-    window.location.href = 'form.html';
+    window.location.href = 'index.html';
 }
 
 setupQuestions();
