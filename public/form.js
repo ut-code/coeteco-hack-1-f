@@ -74,11 +74,11 @@ function checkAndStoreRadioButton() {
             localStorage.setItem('storedValue-' + (i + 1), storedValue);
 
             if (i === questionJson.length - 1) {
-                alert('全ての問題に回答しました。');
+                // alert('全ての問題に回答しました。');
                 redirectToResult();
             }
         } else {
-            alert('ボタンが選択されていません。');
+            alert('すべての問題に解答していません。');
             return;
         }
     }
