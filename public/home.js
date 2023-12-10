@@ -67,7 +67,7 @@ function goToQuestion2(FREvent){
         localStorage.setItem('numberOfQuestion', numberOfQuestion);
         localStorage.setItem('difficultyOfQuestion', difficultyOfQuestion);
         
-        fetch("/.netlify/functions/image_process", {
+        fetch("/api/image_process", {
             method: "post",
             body: JSON.stringify({
                 base64Image,
