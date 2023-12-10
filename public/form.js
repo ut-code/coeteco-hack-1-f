@@ -15,7 +15,6 @@ function checkAndStoreRadioButton() {
   if (selectedValue !== null) {
     const storedValue = selectedValue;
     localStorage.setItem('storedValue', selectedValue);
-    alert('選択されているラジオボタンの値は: ' + storedValue);
     redirectToResult();
   } else {
     alert('ボタンが選択されていません。');
