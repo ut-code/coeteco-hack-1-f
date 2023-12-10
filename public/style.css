@@ -1,9 +1,19 @@
-#questionAndAnswer {
-    margin: 50px auto; /* 上下に20px、左右は自動で中央揃え */
-    font-size: 30px;   /* 適当なフォントサイズを設定 */
-    text-align: center; /* 中央揃え */
-  }
-
 #question {
-    font-size: 40px; /* 適当なフォントサイズを指定 */
-  }
+  font-size: 40px; /* 適当なフォントサイズを指定 */
+  border: 2px solid #ccc; /* 枠線のスタイルと色 */
+  border-radius: 15px; /* 角の丸みを設定 */
+  padding: 20px; /* 内側の余白を設定 */
+  margin-bottom: 20px; /* 下側に余白を設定 */
+}
+
+#answers {
+  border: 2px solid #ccc; /* 枠線のスタイルと色 */
+  border-radius: 15px; /* 角の丸みを設定 */
+  padding: 20px; /* 内側の余白を設定 */
+  font-size: 30px;
+}
+
+.button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

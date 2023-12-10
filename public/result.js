@@ -13,10 +13,11 @@ if (storedValue) {
         radioButtons[j].disabled = true;
       }
 
-    // ラジオボタンの親要素である label にスタイルを設定
-      radioButtons[i].closest('label').style.backgroundColor = (storedValue === answer) ? "green" : "red";
+      radioButtons[i].closest('label').style.backgroundColor = (storedValue === answer) ? "rgba(0, 255, 0, 0.8)" : "rgba(255, 0, 0, 0.8)";
+      radioButtons[i].closest('label').style.borderRadius = '10px';      
 
       // id="description"のtextContentを設定
+      descriptionElement.style.fontSize = '30px';
       descriptionElement.innerHTML = (storedValue === answer.toString())
       ? "正解！<br>" + description
       : "正解は " + answer + "<br>" + description;
