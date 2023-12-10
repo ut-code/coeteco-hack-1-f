@@ -15,8 +15,7 @@ const submitButton = document.getElementById('submit');
 questionsContainer.innerHTML = '';
 
 function setupQuestions() {
-
-    for (let i = 1; i <= numberOfQuestions; i++) {
+  for (let i = 1; i <= numberOfQuestions; i++) {
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('question');
 
@@ -69,8 +68,7 @@ function checkAndStoreRadioButton() {
             localStorage.setItem('storedValue-' + i, storedValue);
 
             if (i === numberOfQuestions) {
-                alert('全ての問題に回答しました。');
-                redirectToIndex2(); 
+                redirectToResult(); 
             }
         } else {
             alert('ボタンが選択されていません。');
@@ -81,6 +79,6 @@ function checkAndStoreRadioButton() {
 
 setupQuestions();
 
-function redirectToIndex2() {
+function redirectToResult() {
     window.location.href = 'result.html';
 }
