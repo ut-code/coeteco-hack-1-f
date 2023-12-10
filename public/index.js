@@ -45,10 +45,14 @@ function displayFileName() {
     FR.readAsDataURL(fileInput.files[0]);
 }
 
+const submitError = document.getElementById("submit-error");
 function goToQuestion() {
     // console.log(checkBox)
+    submitError.textContent = "";
+
     if(base64Image == ""){
-        alert("ファイルをアップロードしてください")
+        submitError.textContent = "画像をアップロードするか選択してください。";
+        return;
     }
 
     const numberOfQuestion = document.getElementById('number-of-problems').value;
@@ -58,6 +62,8 @@ function goToQuestion() {
         localStorage.setItem('base64Image', base64Image);
         localStorage.setItem('numberOfQuestion', numberOfQuestion);
         localStorage.setItem('difficultyOfQuestion', difficultyOfQuestion);
+
+        generateQuestionButtom.classList.add("is-loading");
         
         fetch("/api/image_process", {
             method: "post",
@@ -67,13 +73,18 @@ function goToQuestion() {
                 difficultyOfQuestion,
             })
         }).then(async (result) => {
-            // const
-            const question = await result.text();
-            console.log(question)
-            localStorage.setItem('question', question);
-            window.location.href = 'form.html';
+            generateQuestionButtom.classList.remove("is-loading");
+            if(result.ok){
+                // const
+                const question = await result.text();
+                console.log(question)
+                localStorage.setItem('question', question);
+                window.location.href = 'form.html';
+            }else{
+                submitError.textContent = "エラーが発生しました: " + (await result.text());
+            }
         })
     }else{
-        alert('問題数を選択してください');
+        submitError.textContent = '問題数を選択してください';
     }
 }
