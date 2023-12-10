@@ -1,6 +1,12 @@
 const questionJson = JSON.parse(localStorage.getItem("question"));
 console.log(questionJson)
-for(let i = 0; i < questionJson.length; i++){
+
+const numberOfQuestions = questionJson.length; 
+const questionsContainer = document.getElementById('questions-container');
+const submitButton = document.getElementById('submit');
+questionsContainer.innerHTML = '';
+
+for(let i = 0; i < numberOfQuestions; i++){
   // 1問ごとの問題文と解答
   document.getElementById("question").textContent = questionJson[i].q;
   document.getElementById("option1").textContent = questionJson[i].a;
@@ -8,11 +14,6 @@ for(let i = 0; i < questionJson.length; i++){
   document.getElementById("option3").textContent = questionJson[i].s2;
   document.getElementById("option4").textContent = questionJson[i].s3;
 }
-
-const numberOfQuestions = questionJson.length; 
-const questionsContainer = document.getElementById('questions-container');
-const submitButton = document.getElementById('submit');
-questionsContainer.innerHTML = '';
 
 function setupQuestions() {
   for (let i = 1; i <= numberOfQuestions; i++) {
