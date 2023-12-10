@@ -23,6 +23,32 @@ function goToQuestion() {
     if(files.length === 0 && checkBox === false){
         alert("ファイルをアップロードしてください")
     }else if(checkBox === true){
+        const numberOfQuestion = document.getElementById('number-of-problems').value;
+        const difficultyOfQuestion = document.getElementById('difficulty').value;
+        if(numberOfQuestion !== ""){
+            const sampleImage = fs.readFileSync("sample_mage.png");  // ←画像のファイル名
+            localStorage.setItem('base64Image', sampleImage);
+            localStorage.setItem('numberOfQuestion', numberOfQuestion);
+            localStorage.setItem('difficultyOfQuestion', difficultyOfQuestion);
+            
+            fetch("/.netlify/functions/image_process", {
+                method: "post",
+                body: JSON.stringify({
+                    base64Image,
+                    numberOfQuestion,
+                    difficultyOfQuestion,
+                })
+            }).then(async (result) => {
+                // const
+                const question = await result.text();
+                console.log(question)
+                localStorage.setItem('question', question);
+                window.location.href = 'form.html';
+            })
+        }else{
+            alert('問題数を選択してください');
+        }
+
     }else{
         const FR = new FileReader();    
         FR.addEventListener("load", goToQuestion2)
