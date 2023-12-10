@@ -25,7 +25,7 @@ export default async function handler(request, response) {
             // プロンプト
             {
               type: "text",
-              text: `この画像の範囲内から4択式の問題を${numberOfQuestion}つ作ってください。出力はJSONで{'q':問題文,'a':正解,'s1':誤った選択肢1,'s2':誤った選択肢2,'s3':誤った選択肢3}のArrayの形式で出力してください。画像が認識できない場合は、代わりにユーザーに再アップロードを促す文章を出力してください。`,
+              text: `この画像の範囲内から4択式の問題を${numberOfQuestion}つ作ってください。出力はJSONで{'q':問題文,'a':正解,'s1':誤った選択肢1,'s2':誤った選択肢2,'s3':誤った選択肢3}のArrayの形式で出力してください。`,
             },
             {
               type: "image_url",
@@ -44,8 +44,12 @@ export default async function handler(request, response) {
       const question2 = question
         .slice(question.indexOf("["), question.lastIndexOf("]") + 1)
         .replace("\n", "");
-      console.log("question2=", question2);
-      response.status(200).send(question2);
+      if(question2 !== ""){
+        console.log("question2=", question2);
+        response.status(200).send(question2);
+      }else{
+        response.status(500).send(question); // AIがJSON以外の出力をした場合エラーメッセージとして返す
+      }
     })
     .catch((error) => {
       console.log(error);
