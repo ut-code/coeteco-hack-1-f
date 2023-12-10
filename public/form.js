@@ -6,13 +6,14 @@ const submitButton = document.getElementById('submit');
 function setupQuestions() {
     for (let i = 0; i < questionJson.length; i++) {
         const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
+        questionDiv.classList.add('box', 'mb-5');
 
-        const questionText = document.createElement('div');
+        const questionText = document.createElement('p');
+        questionText.classList.add('title', 'is-4');
         questionText.textContent = questionJson[i].q;
 
         const answersContainer = document.createElement('div');
-        answersContainer.classList.add('answers');
+        answersContainer.classList.add('buttons', 'are-medium');
 
         const answers = [
             questionJson[i].a,
@@ -22,7 +23,7 @@ function setupQuestions() {
         ].sort(() => Math.random() - 0.5);
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
-            label.classList.add('radio');
+            label.classList.add('button', 'is-light');
 
             const input = document.createElement('input');
             input.type = 'radio';
