@@ -3,38 +3,37 @@
 	<head>
 		<title>教科書から問題を作る！</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 	</head>
 	<body class="">
-		<div class="box cta has-background-primary" style="padding: 2rem;">
+		<div class="has-background-primary" style="padding: 2rem;">
 			<h1 class="title is-2 has-text-white has-text-weight-bold">画像から関連した問題を作成します</h1>
 		</div>
 
 		<div class="section">
-			<div class="container">
-                <div class="box">
-                    <h4 class="title is-4 has-text-left">①問題を作成したい範囲の画像をアップロード</h4>
-                            <div class="file" style="display: inline-block;">
-                                <label class="file-label">
-                                    <input class="file-input" type="file" name="file" id="file" onchange="displayFileName()">
-                                    <span class="file-cta has-text-centered is-primary">
-                                        <span class="file-label">
-                                            ファイルをアップロード
-                                        </span>
+            <div class="box">
+                <h4 class="title is-4 has-text-left">①問題を作成したい範囲の画像をアップロード</h4>
+                        <div class="file" style="display: inline-block;">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="file" id="file" onchange="displayFileName()">
+                                <span class="file-cta has-text-centered is-primary">
+                                    <span class="file-label">
+                                        ファイルをアップロード
                                     </span>
-                                </label>
-                            </div>
-                            または
-                            <div class="select">
-                              <select id="sample-select">
-                                <option value="">サンプル画像から選ぶ</option>
-                              </select>
-                            </div>
-                            <div>
-                                <img style="max-width: 100%; max-height: 400px" id="preview"/>
-                            </div>
-                    </div>
-                    
+                                </span>
+                            </label>
+                        </div>
+                        または
+                        <div class="select">
+                          <select id="sample-select">
+                            <option value="">サンプル画像から選ぶ</option>
+                          </select>
+                        </div>
+                        <div>
+                            <img style="max-width: 100%; max-height: 400px" id="preview"/>
+                        </div>
                 </div>
+                
 
                <!-- 問題数選択 -->
 			   <div class="box">
