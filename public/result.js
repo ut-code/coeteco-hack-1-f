@@ -59,16 +59,31 @@ function setupQuestions() {
                 
                 // id="description"のtextContentを設定
                 descriptionElement.style.fontSize = '20px';
-                descriptionElement.innerHTML = (storedValue === option1.toString())
-                    ? "正解！<br>" + questionJson[i].d
-                    : "正解は " + option1;
+                descriptionElement.innerHTML = (storedValue === answer.toString())
+                    ? "正解！"
+                    : "正解は " + answer;
             }
         }
         const nextQuestionButton = document.createElement('button');
+        const descriptionDiv = document.createElement("div"); // 解説
         nextQuestionButton.classList.add('button', 'is-primary', 'mt-3');
         nextQuestionButton.textContent = '解説';
         nextQuestionButton.addEventListener('click', function() {
-            nextQuestionButton.textContent = "解説で〜す";
+            const base64Image = localStorage.getItem('base64Image');
+
+            nextQuestionButton.classList.add("is-loading");
+        
+            fetch("/api/image_process2", {
+                method: "post",
+                body: JSON.stringify({
+                    base64Image,
+                    question: questionJson[i].q,
+                })
+            }).then(async (result) => {
+                nextQuestionButton.classList.remove("is-loading");
+                const description = await result.text();
+                descriptionDiv.textContent = description;
+            })
         });
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
@@ -76,6 +91,7 @@ function setupQuestions() {
         // descriptionElementを追加
         questionDiv.appendChild(descriptionElement);
         questionDiv.appendChild(nextQuestionButton);
+        questionDiv.appendChild(descriptionDiv);
         questionsContainer.appendChild(questionDiv);
     }
 }
