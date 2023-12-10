@@ -38,7 +38,7 @@ export default async function handler(request, response) {
     .then((openAIResponse) => {
       console.log(openAIResponse);
       console.log(openAIResponse.choices[0]);
-      answer = openAIResponse.choices[0].message.content;
+      const answer = openAIResponse.choices[0].message.content;
       response.status(200).send(answer);
     })
     .catch((error) => {

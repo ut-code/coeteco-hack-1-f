@@ -11,11 +11,9 @@ function setupQuestions() {
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('box', 'mb-5');
 
-        const option1 = questionJson[i].a;
-        const option2 = questionJson[i].s1;
-        const option3 = questionJson[i].s2;
-        const option4 = questionJson[i].s3;
-        const answer = option1;
+        const options = JSON.parse(localStorage.getItem(`options-${i}`));
+        console.log(options)
+        const answer = questionJson[i].a;
 
         const questionText = document.createElement('p');
         questionText.classList.add('title', 'is-4');
@@ -23,6 +21,7 @@ function setupQuestions() {
 
         const answersContainer = document.createElement('div');
         answersContainer.classList.add('buttons', 'are-medium');
+        answersContainer.style.marginBottom = "20px"; // でっちあげ
 
         // ここでdescriptionElementを作成
         const descriptionElement = document.createElement('div');
@@ -32,13 +31,15 @@ function setupQuestions() {
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
             label.classList.add('button', 'is-light');
+            label.style.marginBottom = "-15px";
 
             const input = document.createElement('input');
             input.type = 'radio';
             input.name = 'answer-' + (i + 1);
-            input.value = 'option' + j;
+            input.value = options[j - 1];
+             input.disabled = true;
 
-            const text = document.createTextNode('option ' + j);
+            const text = document.createTextNode(options[j - 1]);
 
             label.appendChild(input);
             label.appendChild(text);
@@ -48,26 +49,41 @@ function setupQuestions() {
             if (input.value === storedValue) {
                 input.checked = true;
             }
-
+            console.log(storedValue)
             // 選択されたラジオボタンに対する処理
             if (storedValue && input.checked) {
-                input.disabled = true;
+               
                 label.style.backgroundColor = (storedValue === answer) ? "rgba(0, 255, 0, 0.8)" : "rgba(255, 0, 0, 0.8)";
                 label.style.borderRadius = '10px';
 
                 
                 // id="description"のtextContentを設定
                 descriptionElement.style.fontSize = '20px';
-                descriptionElement.innerHTML = (storedValue === option1.toString())
-                    ? "正解！<br>" + questionJson[i].d
-                    : "正解は " + option1;
+                descriptionElement.innerHTML = (storedValue === answer.toString())
+                    ? "正解！"
+                    : "正解は " + answer;
             }
         }
         const nextQuestionButton = document.createElement('button');
+        const descriptionDiv = document.createElement("div"); // 解説
         nextQuestionButton.classList.add('button', 'is-primary', 'mt-3');
         nextQuestionButton.textContent = '解説';
         nextQuestionButton.addEventListener('click', function() {
-            nextQuestionButton.textContent = "解説で〜す";
+            const base64Image = localStorage.getItem('base64Image');
+
+            nextQuestionButton.classList.add("is-loading");
+        
+            fetch("/api/image_process2", {
+                method: "post",
+                body: JSON.stringify({
+                    base64Image,
+                    question: questionJson[i].q,
+                })
+            }).then(async (result) => {
+                nextQuestionButton.classList.remove("is-loading");
+                const description = await result.text();
+                descriptionDiv.textContent = description;
+            })
         });
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
@@ -75,6 +91,7 @@ function setupQuestions() {
         // descriptionElementを追加
         questionDiv.appendChild(descriptionElement);
         questionDiv.appendChild(nextQuestionButton);
+        questionDiv.appendChild(descriptionDiv);
         questionsContainer.appendChild(questionDiv);
     }
 }
