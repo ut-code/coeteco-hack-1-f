@@ -55,19 +55,26 @@ function setupQuestions() {
                 label.style.backgroundColor = (storedValue === answer) ? "rgba(0, 255, 0, 0.8)" : "rgba(255, 0, 0, 0.8)";
                 label.style.borderRadius = '10px';
 
+                
                 // id="description"のtextContentを設定
                 descriptionElement.style.fontSize = '20px';
                 descriptionElement.innerHTML = (storedValue === option1.toString())
                     ? "正解！<br>" + questionJson[i].d
-                    : "正解は " + option1 + "<br>" + questionJson[i].d;
+                    : "正解は " + option1;
             }
         }
-
+        const nextQuestionButton = document.createElement('button');
+        nextQuestionButton.classList.add('button', 'is-primary', 'mt-3');
+        nextQuestionButton.textContent = '解説';
+        nextQuestionButton.addEventListener('click', function() {
+            nextQuestionButton.textContent = "解説で〜す";
+        });
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
 
         // descriptionElementを追加
         questionDiv.appendChild(descriptionElement);
+        questionDiv.appendChild(nextQuestionButton);
         questionsContainer.appendChild(questionDiv);
     }
 }
