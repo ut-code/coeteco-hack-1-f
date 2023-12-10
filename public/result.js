@@ -48,12 +48,12 @@ function setupQuestions() {
 
                 // id="description"のtextContentを設定
 
-                    descriptionElement.style.fontSize = '30px';
-                    descriptionElement.innerHTML = (storedValue === answer.toString())
-                        ? "正解！<br>" + description
-                        : "正解は " + answer + "<br>" + description;
+               descriptionElement.style.fontSize = '30px';
+               descriptionElement.innerHTML = (storedValue === answer.toString())
+               ? "正解！<br>" + description
+               : "正解は " + answer + "<br>" + description;
 
-        }
+              }
 
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
@@ -72,7 +72,7 @@ function redirectToHome() {
 }
 
 function regenerateQuestion() {
-    window.location.href = 'index.html';
+    window.location.href = 'form.html';
 }
 
 setupQuestions();
