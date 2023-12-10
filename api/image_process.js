@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import fs from "fs";
+// import fs from "fs";
 
 export default async function handler(request, response) {
   // console.log(req);
