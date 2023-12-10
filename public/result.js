@@ -15,6 +15,10 @@ function setupQuestions() {
         console.log(options)
         const answer = questionJson[i].a;
 
+        const questionNumber = document.createElement('p');
+        questionNumber.classList.add('title', 'is-4');
+        questionNumber.textContent = `Q ${i + 1}`;
+
         const questionText = document.createElement('p');
         questionText.classList.add('title', 'is-4');
         questionText.textContent = questionJson[i].q;
@@ -49,7 +53,6 @@ function setupQuestions() {
             if (input.value === storedValue) {
                 input.checked = true;
             }
-            console.log(storedValue)
             // 選択されたラジオボタンに対する処理
             if (storedValue && input.checked) {
                
@@ -85,6 +88,7 @@ function setupQuestions() {
                 descriptionDiv.textContent = description;
             })
         });
+        questionDiv.appendChild(questionNumber);
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
 

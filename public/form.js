@@ -12,6 +12,10 @@ function setupQuestions() {
         questionText.classList.add('title', 'is-4');
         questionText.textContent = questionJson[i].q;
 
+        const questionNumber = document.createElement('p');
+        questionNumber.classList.add('title', 'is-4');
+        questionNumber.textContent = `Q ${i + 1}`;
+
         const answersContainer = document.createElement('div');
         answersContainer.classList.add('buttons', 'are-medium');
         answersContainer.style.marginBottom = "20px"; // でっちあげ
@@ -44,6 +48,7 @@ function setupQuestions() {
             answersContainer.appendChild(label);
         }
 
+        questionDiv.appendChild(questionNumber);
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
         questionsContainer.appendChild(questionDiv);
