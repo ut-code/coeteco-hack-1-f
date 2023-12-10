@@ -9,7 +9,7 @@ for(let i = 0; i < questionJson.length; i++){
   document.getElementById("option4").textContent = questionJson[i].s3;
 }
 
-const numberOfQuestions = 3; 
+const numberOfQuestions = questionJson.length; 
 const questionsContainer = document.getElementById('questions-container');
 const submitButton = document.getElementById('submit');
 questionsContainer.innerHTML = '';
