@@ -1,26 +1,31 @@
 const questionJson = JSON.parse(localStorage.getItem("question"));
 const numberOfQuestions = questionJson.length;
-//const answer = "option1";
-//const description = "解説";
+
 const questionsContainer = document.getElementById('questions-container');
 questionsContainer.innerHTML = '';
 
 function setupQuestions() {
-    for (let i = 1; i <= numberOfQuestions; i++) {
-        const storedValue = localStorage.getItem('storedValue-' + i);
+    for (let i = 0; i < numberOfQuestions; i++) {
+        const storedValue = localStorage.getItem('storedValue-' + (i + 1));
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('question');
 
+        const option1 = questionJson[i].a;
+        const option2 = questionJson[i].s1;
+        const option3 = questionJson[i].s2;
+        const option4 = questionJson[i].s3;
+        const answer = option1;
+
         const questionText = document.createElement('div');
-        questionText.id = 'question-' + i;
+        questionText.id = 'question-' + (i + 1);
         questionText.textContent = questionJson[i].q;
 
         const answersContainer = document.createElement('div');
-        answersContainer.id = 'answers-' + i;
+        answersContainer.id = 'answers-' + (i + 1);
 
         // ここでdescriptionElementを作成
         const descriptionElement = document.createElement('div');
-        descriptionElement.id = 'description-' + i;
+        descriptionElement.id = 'description-' + (i + 1);
 
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
@@ -28,7 +33,7 @@ function setupQuestions() {
 
             const input = document.createElement('input');
             input.type = 'radio';
-            input.name = 'answer-' + i;
+            input.name = 'answer-' + (i + 1);
             input.value = 'option' + j;
 
             const text = document.createTextNode('option ' + j);
@@ -50,18 +55,17 @@ function setupQuestions() {
 
                 // id="description"のtextContentを設定
                 descriptionElement.style.fontSize = '20px';
-                descriptionElement.innerHTML = (storedValue === answer.toString())
-                    ? "正解！<br>" + description
-                    : "正解は " + answer + "<br>" + description;
+                descriptionElement.innerHTML = (storedValue === option1.toString())
+                    ? "正解！<br>" + questionJson[i].d
+                    : "正解は " + option1 + "<br>" + questionJson[i].d;
             }
         }
 
         questionDiv.appendChild(questionText);
         questionDiv.appendChild(answersContainer);
-        
+
         // descriptionElementを追加
         questionDiv.appendChild(descriptionElement);
-
         questionsContainer.appendChild(questionDiv);
     }
 }
