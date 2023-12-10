@@ -7,7 +7,7 @@ npm install
 ```
 
 ```sh
-npm run dev
+npx vercel dev
 ```
 で動作確認できます
 
