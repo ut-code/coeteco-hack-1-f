@@ -1,11 +1,20 @@
+// import fs from "fs";
+
 const generateQuestionButtom = document.getElementById('generateQuestion');
 generateQuestionButtom.addEventListener('click', goToQuestion);
 
 function goToQuestion() {
     const files = document.getElementById("file").files;
-    const FR = new FileReader();
-    FR.addEventListener("load", goToQuestion2)
-    FR.readAsDataURL(files[0]);
+    const checkBox = document.getElementById('checkbox').checked;
+    // console.log(checkBox)
+    if(files.length === 0 && checkBox === false){
+        alert("ファイルをアップロードしてください")
+    }else if(checkBox === true){
+    }else{
+        const FR = new FileReader();    
+        FR.addEventListener("load", goToQuestion2)
+        FR.readAsDataURL(files[0]);
+    }
 }
 function goToQuestion2(FREvent){
     const base64Image = FREvent.target.result; // "data:image/png;..." がかえってくる
