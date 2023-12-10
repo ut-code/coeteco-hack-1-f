@@ -47,7 +47,7 @@
 					<h4 class="title is-4">②問題数を選択してください</h4>
 					<div class="field">
 						<div class="control is-half">
-							<input class="input" type="number" id="number-of-problems" name="number_of_problems" placeholder="問題数を入力してください...">
+							<input class="input" type="number" id="number-of-problems" name="number_of_problems" placeholder="問題数を入力してください..." min="0">
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,6 @@
                         <div class="control">
                             <div class="select is-half">
                                 <select id="difficulty" name="difficulty">
-                                    <option value="">選択してください</option>
                                     <option value="easy">簡単</option>
                                     <option value="medium">普通</option>
                                     <option value="hard">難</option>
@@ -68,9 +67,21 @@
                         </div>
                     </div>    
                 </div>
+                
+                <!-- 問題生成ボタン -->
+                <div class="box">
+                    <h4 class="title is-4">④問題を生成します</h4>
+                    <div class="field">
+                        <div class="buttons" type="submit">
+                            <button class="button is-primary">問題を生成</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
+
+
 	</body>
     <script src="./script.js"></script>
 </html>
