@@ -3,6 +3,19 @@
 const generateQuestionButtom = document.getElementById('generateQuestion');
 generateQuestionButtom.addEventListener('click', goToQuestion);
 
+
+// ファイルをアップロードした時の処理
+function displayFileName() {
+    const fileInput = document.getElementById('file');
+    const fileNameBox = document.querySelector('.file-label .file-label');
+    
+    if (fileInput.files.length > 0) {
+        fileNameBox.textContent = fileInput.files[0].name;
+    } else {
+        fileNameBox.textContent = 'ファイルをアップロード';
+    }
+}
+
 function goToQuestion() {
     const files = document.getElementById("file").files;
     const checkBox = document.getElementById('checkbox').checked;

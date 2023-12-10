@@ -16,21 +16,19 @@
                     <div class="dropdown is-active">
                         <div class="dropdown-trigger">
                             <label class="file-label">
-                                <input class="file-input" type="file" name="file" id="file">
-                                <span class="file-cta has-text-centered is-primary"> <!-- is-primaryをfile-ctaに追加 -->
+                                <input class="file-input" type="file" name="file" id="file" onchange="displayFileName()">
+                                <span class="file-cta has-text-centered is-primary">
                                     <span class="file-label">
                                         ファイルをアップロード
                                     </span>
                                 </span>
                             </label>
-                            <label class="file-label">
-                                <span class="box has-text-centered is-primary"> <!-- is-primaryをfile-ctaに追加 -->
-                                    <label class="checkbox">
-                                        <input type="checkbox" id = "checkbox">
-                                        サンプル画像を利用してみる
-                                    </label>
-                                </span>
-                            </label>
+                            <div class="box has-text-centered is-primary">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="checkbox">
+                                    サンプル画像を利用してみる
+                                </label>
+                            </div>
                         </div>
                     </div>
                     
