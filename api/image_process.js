@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import fs from "fs";
 
+
 export const handler = async (req) => {
   // console.log(req);
   const { base64Image, numberOfQuestion, difficultyOfQuestion } = JSON.parse(req.body);
