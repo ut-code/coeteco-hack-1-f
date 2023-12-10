@@ -111,7 +111,31 @@ function redirectToHome() {
 }
 
 function regenerateQuestion() {
-    window.location.href = 'form.html';
+    const base64Image = localStorage.getItem('base64Image');
+    const numberOfQuestion = localStorage.getItem('numberOfQuestion');
+    const difficultyOfQuestion = localStorage.getItem('difficultyOfQuestion');
+
+    regenerateQuestionButton.classList.add("is-loading");
+    
+    fetch("/api/image_process", {
+        method: "post",
+        body: JSON.stringify({
+            base64Image,
+            numberOfQuestion,
+            difficultyOfQuestion,
+        })
+    }).then(async (result) => {
+        regenerateQuestionButton.classList.remove("is-loading");
+        if(result.ok){
+            // const
+            const question = await result.text();
+            console.log(question)
+            localStorage.setItem('question', question);
+            window.location.href = 'form.html';
+        }else{
+            submitError.textContent = "エラーが発生しました: " + (await result.text());
+        }
+    })
 }
 
 setupQuestions();
