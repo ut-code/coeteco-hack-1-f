@@ -24,7 +24,7 @@ export default async function handler(request, response) {
           // プロンプト
           {
             type: "text",
-            text: "この画像の範囲内から4択式の問題を1つ作ってください。出力はJSONで{'q':問題文,'a':正解,'s1':誤った選択肢1,'s2':誤った選択肢2,'s3':誤った選択肢3}の形式で出力してください。",
+            text: `この画像の範囲内から4択式の問題を${numberOfQuestion}つ作ってください。出力はJSONで{'q':問題文,'a':正解,'s1':誤った選択肢1,'s2':誤った選択肢2,'s3':誤った選択肢3}のArrayの形式で出力してください。`,
           },
           {
             type: "image_url",
@@ -40,7 +40,7 @@ export default async function handler(request, response) {
   console.log(openAIResponse.choices[0]);
   const question = openAIResponse.choices[0].message.content;
   const question2 = question
-    .slice(question.indexOf("{"), question.lastIndexOf("}") + 1)
+    .slice(question.indexOf("["), question.lastIndexOf("]") + 1)
     .replace("\n", "");
   console.log("question2=", question2);
   response.status(200).send(question2);
