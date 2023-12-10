@@ -14,6 +14,7 @@ function setupQuestions() {
 
         const answersContainer = document.createElement('div');
         answersContainer.classList.add('buttons', 'are-medium');
+        answersContainer.style.marginBottom = "20px"; // でっちあげ
 
         const answers = [
             questionJson[i].a,
@@ -21,14 +22,16 @@ function setupQuestions() {
             questionJson[i].s2,
             questionJson[i].s3,
         ].sort(() => Math.random() - 0.5);
+        localStorage.setItem(`options-${i}`, JSON.stringify(answers));
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
             label.classList.add('button', 'is-light');
+            label.style.marginBottom = "-15px";
 
             const input = document.createElement('input');
             input.type = 'radio';
             input.name = 'answer-' + (i + 1);
-            input.value = 'option' + j;
+            input.value = answers[j - 1];
 
             const text = document.createTextNode(answers[j - 1]);
 
