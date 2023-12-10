@@ -9,35 +9,14 @@
 </head>
 <body>
     <div id="questionAndAnswer">
-        <div id="question">Question</div>
-        <div id="answers">
-          <label class="radio">
-            <input type="radio" name="answer" value="option1">
-            option 1
-          </label><br>
-          <label class="radio">
-            <input type="radio" name="answer" value="option2">
-            option 2
-          </label><br>
-          <label class="radio">
-            <input type="radio" name="answer" value="option3">
-            option 3
-            </label><br>
-          <label class="radio">
-            <input type="radio" name="answer" value="option4">
-            option 4
-            </label><br>   
-        </div>  
-        <div id="description"></div>     
+        <div id="questions-container"></div>
     </div>
 
-    <div class="buttons is-centered">
+    <div class="buttons is-centered" id="button">
         <a class="button is-success is-large" id="redirectToHome">ホームに戻る</a>
         <a class="button is-info is-large" id="regenerateQuestion">問題を再生成</a>
-      </div>
-      
+    </div>
 
-    <script src = "result.js"></script>
-
+    <script src="result.js"></script>
 </body>
 </html>
