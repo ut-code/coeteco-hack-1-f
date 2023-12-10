@@ -17,9 +17,9 @@ if (storedValue) {
       radioButtons[i].closest('label').style.backgroundColor = (storedValue === answer) ? "green" : "red";
 
       // id="description"のtextContentを設定
-      descriptionElement.textContent = (storedValue === answer.toString())
-        ? "正解！" + description
-        : "正解は"+ answer + description;
+      descriptionElement.innerHTML = (storedValue === answer.toString())
+      ? "正解！<br>" + description
+      : "正解は " + answer + "<br>" + description;
 
       break;
     }
