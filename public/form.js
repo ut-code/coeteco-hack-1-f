@@ -14,6 +14,12 @@ function setupQuestions() {
         const answersContainer = document.createElement('div');
         answersContainer.classList.add('answers');
 
+        const answers = [
+            questionJson[i].a,
+            questionJson[i].s1,
+            questionJson[i].s2,
+            questionJson[i].s3,
+        ].sort(() => Math.random() - 0.5);
         for (let j = 1; j <= 4; j++) {
             const label = document.createElement('label');
             label.classList.add('radio');
@@ -23,7 +29,7 @@ function setupQuestions() {
             input.name = 'answer-' + (i + 1);
             input.value = 'option' + j;
 
-            const text = document.createTextNode(questionJson[i]['s' + j]);
+            const text = document.createTextNode(answers[j - 1]);
 
             const span = document.createElement('span');
             span.id = 'option' + j + '-' + (i + 1);
