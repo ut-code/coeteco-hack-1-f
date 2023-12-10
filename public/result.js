@@ -1,4 +1,5 @@
-const numberOfQuestions = 3;
+const questionJson = JSON.parse(localStorage.getItem("question"));
+const numberOfQuestions = questionJson.length;
 const answer = "option1";
 const description = "解説";
 const questionsContainer = document.getElementById('questions-container');
@@ -69,6 +70,7 @@ regenerateQuestionButton.addEventListener('click', regenerateQuestion);
 
 function redirectToHome() {
     window.location.href = 'index.html';
+  window.location.href = 'index.html';
 }
 
 function regenerateQuestion() {
